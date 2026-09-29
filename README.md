@@ -1,5 +1,91 @@
 # StoreMind AI — Retail Inventory & Incident Prototype
 
+# (StoreMind.py is one singular file, while the other comes with explanations of each section)
+
+
+## Out-of-Stock Detection — Roboflow
+
+[Out-of-Stock Detection Dataset](https://universe.roboflow.com/empty-space-detection-capstone/out-of-stock-detection?utm_source=chatgpt.com)
+
+**Potential use:** Detect empty spaces on retail shelves.
+
+This dataset contains an `empty` detection class and could be useful for experimenting with locating empty shelf regions.
+
+### Limitation
+
+The current StoreMind image classifier uses three shelf-state classes:
+
+    empty
+    low
+    stocked
+
+Because this dataset only detects empty spaces, it cannot directly train the notebook's three-class `empty / low / stocked` classifier without additional labelled data.
+
+---
+
+## SKU110K
+
+[SKU110K — GitHub](https://github.com/eg4000/SKU110K_CVPR19)
+
+**Potential use:** Detect and count visible products on densely packed retail shelves.
+
+SKU110K is useful for experimenting with object detection in highly crowded retail shelf environments.
+
+### Limitation
+
+Its product bounding boxes use a generic product class rather than identifying individual store SKUs.
+
+StoreMind would ultimately need SKU-aware recognition to associate visual detections with inventory and POS records.
+
+The dataset authors also restrict the data to academic, non-commercial use, so its licence must be considered before commercial use.
+
+---
+
+## RetailAction
+
+[RetailAction — Hugging Face](https://huggingface.co/datasets/standard-cognition/RetailAction?utm_source=chatgpt.com)
+
+**Potential use:** Explore video-based recognition of retail interactions such as:
+
+    take
+    put
+    touch
+
+This could support research into product-movement detection and customer-item interaction.
+
+### Limitation
+
+RetailAction is significantly larger and more complex than the current prototype, containing approximately 21,000 annotated multi-view samples.
+
+It does not provide matching StoreMind-style POS transaction records, so transaction reconciliation would still require a separate data source or custom dataset.
+
+Its separate dataset licence should be reviewed before use.
+
+---
+
+## FreshRetailNet-50K
+
+[FreshRetailNet-50K — Hugging Face](https://huggingface.co/datasets/Dingdong-Inc/FreshRetailNet-50K)
+
+**Potential use:** Experiment with sales, inventory, and stockout modelling.
+
+This dataset could support the non-visual side of StoreMind, including:
+
+- Stockout prediction
+- Inventory modelling
+- Demand analysis
+- Replenishment research
+
+### Limitation
+
+FreshRetailNet-50K primarily contains tabular sales and stock information.
+
+It does not contain shelf photographs directly linked to those records, so it cannot independently train the computer-vision component of StoreMind.
+
+---
+
+
+
 StoreMind AI is a computer vision and retail-operations prototype exploring how shelf observations, inventory records, point-of-sale events, and camera activity could be combined to support store staff.
 
 The current prototype demonstrates:
@@ -234,86 +320,7 @@ None of these datasets directly provides all the data required by the prototype,
 
 ---
 
-## Out-of-Stock Detection — Roboflow
 
-[Out-of-Stock Detection Dataset](https://universe.roboflow.com/empty-space-detection-capstone/out-of-stock-detection?utm_source=chatgpt.com)
-
-**Potential use:** Detect empty spaces on retail shelves.
-
-This dataset contains an `empty` detection class and could be useful for experimenting with locating empty shelf regions.
-
-### Limitation
-
-The current StoreMind image classifier uses three shelf-state classes:
-
-    empty
-    low
-    stocked
-
-Because this dataset only detects empty spaces, it cannot directly train the notebook's three-class `empty / low / stocked` classifier without additional labelled data.
-
----
-
-## SKU110K
-
-[SKU110K — GitHub](https://github.com/eg4000/SKU110K_CVPR19)
-
-**Potential use:** Detect and count visible products on densely packed retail shelves.
-
-SKU110K is useful for experimenting with object detection in highly crowded retail shelf environments.
-
-### Limitation
-
-Its product bounding boxes use a generic product class rather than identifying individual store SKUs.
-
-StoreMind would ultimately need SKU-aware recognition to associate visual detections with inventory and POS records.
-
-The dataset authors also restrict the data to academic, non-commercial use, so its licence must be considered before commercial use.
-
----
-
-## RetailAction
-
-[RetailAction — Hugging Face](https://huggingface.co/datasets/standard-cognition/RetailAction?utm_source=chatgpt.com)
-
-**Potential use:** Explore video-based recognition of retail interactions such as:
-
-    take
-    put
-    touch
-
-This could support research into product-movement detection and customer-item interaction.
-
-### Limitation
-
-RetailAction is significantly larger and more complex than the current prototype, containing approximately 21,000 annotated multi-view samples.
-
-It does not provide matching StoreMind-style POS transaction records, so transaction reconciliation would still require a separate data source or custom dataset.
-
-Its separate dataset licence should be reviewed before use.
-
----
-
-## FreshRetailNet-50K
-
-[FreshRetailNet-50K — Hugging Face](https://huggingface.co/datasets/Dingdong-Inc/FreshRetailNet-50K)
-
-**Potential use:** Experiment with sales, inventory, and stockout modelling.
-
-This dataset could support the non-visual side of StoreMind, including:
-
-- Stockout prediction
-- Inventory modelling
-- Demand analysis
-- Replenishment research
-
-### Limitation
-
-FreshRetailNet-50K primarily contains tabular sales and stock information.
-
-It does not contain shelf photographs directly linked to those records, so it cannot independently train the computer-vision component of StoreMind.
-
----
 
 ## How These Datasets Could Fit Together
 
